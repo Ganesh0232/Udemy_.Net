@@ -7,9 +7,27 @@
 <h3>ShoppingList</h3>
 
 
-<input placeholder="Grocery Name" @bind="groceryName"/>
+@*<input placeholder="Grocery Name" @bind="groceryName"/>
 <input placeholder="Price " @bind="groceryPrice" />
-<button @onclick="AddGrocery">Add grocery to the cart</button>
+<button @onclick="AddGrocery">Add grocery to the cart</button>*@
+
+<EditForm Model="gRocery" OnSubmit="AddGrocery">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <p>
+        <label>
+            Name:
+            <InputText @bind-Value="gRocery.Name" />
+        </label>
+    </p>
+    <p>
+        <label>
+            Price:
+            <InputNumber @bind-Value="gRocery.Price"  />
+        </label>
+    </p>
+    <button type="submit">Add Grocery</button>
+</EditForm>
 
 <table class="table table-sm">
     <tr>
@@ -32,24 +50,34 @@
 @code {
     private float sum = 0;
     private List<Grocery> groceries = new();
-
+    private Grocery gRocery = new();
     private string groceryName;
     private float groceryPrice;
+
     private void AddGrocery()
     {
-        if(!string.IsNullOrWhiteSpace(groceryName) && groceryPrice > 0)
-        {
-            groceries.Add(new Grocery
-            {
-                Name= groceryName,
-                Price = groceryPrice
+        //if(!string.IsNullOrWhiteSpace(groceryName) && groceryPrice > 0)
+        //{
+        //    groceries.Add(new Grocery
+        //    {
+        //        Name= groceryName,
+        //        Price = groceryPrice
 
-            });
-            //   sum += groceryPrice;
-            groceryName = "u name it , we will get it for u";
-            groceryPrice = 0;
+        //    });
+        //    //   sum += groceryPrice;
+        //    groceryName = "u name it , we will get it for u";
+        //    groceryPrice = 0;
 
-        }
+        //}
+
+        //////////////////////////////////////////////////////////////////////////////////////////
+        //if(!string.IsNullOrWhiteSpace(groceryName)&& groceryPrice > 0)
+        //{
+        //    groceries.Add(gRocery);
+        //    gRocery = new();
+        //}
+        groceries.Add(gRocery);
+        gRocery = new();
         UpdateTotalAmount();
     }
     public void UpdateTotalAmount()
