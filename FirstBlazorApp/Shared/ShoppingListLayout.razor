@@ -1,24 +1,35 @@
 ﻿@inherits LayoutComponentBase
-
+@*
 <header>
     <h1>Our List</h1>
-</header>
+</header>*@
 
-<Nav>
+<div class="Layout">
+    <div class="header">
+        <h1>Our List</h1>
+    </div>
+    <a>@today.ToString("dddd, dd MMMM yyyy")</a>
+</div>
+
+<div class="sidebar">
     <a href="/">Home</a>
     <a href="/counter">Counter</a>
     <a href="/converter">Converter</a>
-</Nav>
-<div>
-    <a>@today.ToString("dddd , dd MMMM yyyy")</a>
 </div>
 
+<div class="content">
+    <p> @Body</p>
+</div>
 
-@Body
+<div class="footer">
 
 <footer>
     @footerMessage
 </footer>
+
+</div>
+
+
 
 @code {
     public string footerMessage { get; set; } = "Great Shopping";
